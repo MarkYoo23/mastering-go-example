@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="write_page" uuid="2d3f1cc5-dcd8-49b8-86f3-ea1c0bbc4233">
+    <data-source source="LOCAL" name="write_page" uuid="acc37420-7c7d-46cd-ad9f-e8baab3d708c">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\prtra\OneDrive\문서\GitHub\white-page\.bin\write_page.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:C:\Users\prtra\OneDrive\문서\GitHub\mastering-go-example\2024-01-13 white-page\.bin\write_page.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
+      <libraries>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.43.0/org/xerial/sqlite-jdbc/3.43.0.0/sqlite-jdbc-3.43.0.0.jar</url>
+        </library>
+      </libraries>
     </data-source>
   </component>
 </project>

@@ -8,7 +8,7 @@ import (
 )
 
 func init() {
-	RootCmd.AddCommand(infoCmd)
+	rootCmd.AddCommand(infoCmd)
 }
 
 const message = `

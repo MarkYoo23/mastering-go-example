@@ -30,8 +30,3 @@ func (Entry) Fields() []ent.Field {
 		field.Time("created_at").Default(time.Now),
 	}
 }
-
-// Edges of the Entry.
-func (Entry) Edges() []ent.Edge {
-	return nil
-}

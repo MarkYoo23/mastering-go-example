@@ -2,12 +2,11 @@ package commands
 
 import (
 	"fmt"
-
 	"github.com/spf13/cobra"
 )
 
 func init() {
-	RootCmd.AddCommand(helpCmd)
+	rootCmd.AddCommand(helpCmd)
 }
 
 var helpCmd = &cobra.Command{

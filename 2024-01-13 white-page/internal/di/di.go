@@ -23,8 +23,14 @@ func Initialize() error {
 		return fmt.Errorf("register service error : %v", err)
 	}
 
-	if err := newContainer.Provide(func(ctx *db.DbContext) *entries.EntryService {
-		return entries.NewEntryService(ctx)
+	if err := newContainer.Provide(func(ctx *db.DbContext) *entries.EntryRepository {
+		return entries.NewEntryRepository(ctx)
+	}); err != nil {
+		return fmt.Errorf("register service error : %v", err)
+	}
+
+	if err := newContainer.Provide(func(repository *entries.EntryRepository) *entries.EntryService {
+		return entries.NewEntryService(repository)
 	}); err != nil {
 		return fmt.Errorf("register service error : %v", err)
 	}

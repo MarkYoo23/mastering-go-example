@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"strings"
 	"white-page/cmd/cli/commands"
 	"white-page/internal/constants"
@@ -24,13 +25,22 @@ const banner = `
 -------------------------------------------------------------------------------
 Write page application v{ApplicationVersion}, created by 'Saturday Day Night'
 -------------------------------------------------------------------------------
+{args}
 `
 
 func init() {
 }
 
+func fillTemplate() string {
+	template := banner
+	template = strings.ReplaceAll(banner, "{ApplicationVersion}", constants.Version)
+	template = strings.ReplaceAll(banner, "{args}", fmt.Sprintf("args : %v", os.Args[1:]))
+
+	return template
+}
+
 func main() {
-	fmt.Println(strings.ReplaceAll(banner, "{ApplicationVersion}", constants.Version))
+	fmt.Println(fillTemplate())
 
 	err := di.Initialize()
 	if err != nil {
