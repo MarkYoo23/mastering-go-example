@@ -50,7 +50,7 @@ func (r *DbContext) Open() error {
 	}
 
 	databasePath := filepath.Join(".bin", "write_page.db")
-	client, err := ent.Open("sqlite3", "file:"+databasePath+"?cache=shared&_fk=1")
+	client, err := ent.Open("sqlite3", "file.txt:"+databasePath+"?cache=shared&_fk=1")
 	if err != nil {
 		_ = r.Client.Close()
 		return fmt.Errorf("failed opening connection to sqlite: %v", err)

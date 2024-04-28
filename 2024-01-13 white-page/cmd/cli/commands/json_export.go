@@ -1,7 +1,7 @@
 package commands
 
 import (
-	"encoding/csv"
+	"encoding/json"
 	"fmt"
 	"github.com/spf13/cobra"
 	"os"
@@ -12,9 +12,8 @@ import (
 
 func init() {
 	rootCmd.AddCommand(&cobra.Command{
-		Use: commandCsvExport,
+		Use: commandJsonExport,
 		Run: func(cmd *cobra.Command, args []string) {
-
 			service, err := di.GetService[entries.EntryRepository]()
 			if err != nil {
 				panic(fmt.Errorf("error : %v", err))
@@ -25,23 +24,23 @@ func init() {
 				panic(fmt.Errorf("not found error : %v", err))
 			}
 
-			// CSV 파일 생성
-			file, err := os.Open(envs.PhoneBookCsvLocation)
+			marshal, err := json.Marshal(results)
 			if err != nil {
-				panic(fmt.Errorf("could not create CSV file.txt: %v", err))
+				return
+			}
+
+			file, err := os.OpenFile(envs.PhoneBookJsonLocation, os.O_WRONLY|os.O_TRUNC|os.O_CREATE, 0644)
+			if err != nil {
+				panic(fmt.Errorf("could not create phonebook.json: %v", err))
 			}
 
 			defer func(file *os.File) {
 				_ = file.Close()
 			}(file)
 
-			writer := csv.NewWriter(file)
-			defer writer.Flush()
-
-			for _, result := range results {
-				if err = writer.Write([]string{result.Name, result.Surname, result.Tel}); err != nil {
-					panic(fmt.Errorf("could not write to CSV file.txt: %v", err))
-				}
+			_, err = file.Write(marshal)
+			if err != nil {
+				return
 			}
 
 			fmt.Println("export success")

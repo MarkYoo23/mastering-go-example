@@ -12,7 +12,7 @@ import (
 
 func init() {
 	rootCmd.AddCommand(&cobra.Command{
-		Use: commandImport,
+		Use: commandCsvImport,
 		Run: func(cmd *cobra.Command, args []string) {
 
 			service, err := di.GetService[entries.EntryRepository]()

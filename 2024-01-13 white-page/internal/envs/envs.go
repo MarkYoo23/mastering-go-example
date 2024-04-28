@@ -3,7 +3,8 @@ package envs
 import "os"
 
 var (
-	PhoneBookCsvLocation string = ".bin/phonebook.csv"
+	PhoneBookCsvLocation  string = ".bin/phonebook.csv"
+	PhoneBookJsonLocation string = ".bin/phonebook.json"
 )
 
 func init() {
